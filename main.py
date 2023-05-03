@@ -11,7 +11,7 @@ def index():
 
 
 @app.route('/chat')
-def chat_index():
+def chat():
     return render_template(
         'chat.html'
     )
