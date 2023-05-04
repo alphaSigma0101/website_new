@@ -9,7 +9,7 @@ header {
 
 section {
     position: absolute;
-    width: 70%;
+    width: 1454px;
     height: 1044px;
     left: 427px;
     top: 24px;
@@ -29,8 +29,14 @@ section {
     top: 157px;
     background-color: #FFFFFF;
     border-radius: 18px;
-
 }
+
+td {
+    border: 1px black solid; /* стиль рамки ячеек */
+    border-radius: 18px;
+    padding: 0.2em; 
+
+   }
 
 #circle {
     margin: 145px 1346px 850px 64px;
@@ -119,25 +125,6 @@ h2.menu-item {
     font-weight: normal;
 }
 
-.message img {
-    margin-right: 10px;
-}
-
-.container p, .container_lft p {
-    font-size: 20px;
-    display: table-cell;
-    padding-top: 5px;
-    vertical-align: 35%;
-}
-
-.container {
-    margin-right: 45px
-}
-
-.container_lft {
-    margin-left: 45px
-}
-
 #chat {
     margin-top: 400px;
     margin-bottom: 33px;
@@ -169,4 +156,92 @@ A:visited {
 A:active {
     color: black;
     text-decoration: none;
+}
+
+.message img {
+    margin-right: 10px;
+}
+
+.container p, .container_lft p {
+    font-size: 20px;
+    display: table-cell;
+    padding-top: 5px;
+    vertical-align: 35%;
+}
+
+#employees {
+
+    width: 1352px;
+    height: 304px;
+    margin: 100px 50px 50px ;
+
+    background: #4654EB;
+    border-radius: 18px;
+}
+
+#employees2 {
+    width: 1352px;
+    height: 304px;
+    margin: 100px 50px 50px ;
+
+    background: #FFFFFF;
+    border-radius: 18px;
+}
+
+ul.staff_member {
+    font: 14px "Sen", Arial, sans-serif;
+    overflow: hidden;
+}
+    ul li {
+        list-style-type: none;
+    }
+    ul li.left {
+            width: 10%;
+            float: left;
+    }
+    ul li.right {
+            width: 10%;
+            float: left;
+            text-align: left;
+    }
+    ul li.center {
+            text-align: left;
+    }
+    ul li .content, ul li .content2 {
+            background: #FFFFFF;
+            width: 117px;
+            height: 147px;
+            margin: 20px 40px;
+            display: inline-block;
+            text-align: left;
+            border-radius: 18px;
+
+
+    }
+
+    ul li .content2 {
+        background: #F3F3FB;
+    }
+
+.content img, .content2 img {
+    width: 45px;
+    height: 50px;
+    margin-top: 33px;
+    margin-left: 34px;
+}
+
+
+.txt {
+    margin-top: -60px;
+    margin-left: 84px;
+    font-family: "Sen", Arial, sans-serif;
+}
+
+.department, .department2 {
+    color: #FFFFFF;
+    margin: 20px 1048px 5px 54px;
+    font-family: "Sen", Arial, sans-serif;
+}
+.department2 {
+    color: #686868;
 }
