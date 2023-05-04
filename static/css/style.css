@@ -139,7 +139,7 @@ h2.menu-item {
     border-radius: 18px;
 }
 
-button {
+button{
     outline: none; /* Для синий ободки */
     border: 0;
     background: transparent;
@@ -244,4 +244,73 @@ ul.staff_member {
 }
 .department2 {
     color: #686868;
+}
+
+.profile, #profile, #profile2, .profile2 {
+    position: absolute;
+    width: 310px;
+    height: 304px;
+    top: 30px;
+    left: 50px;
+
+    background: #FFFFFF;
+    border-radius: 18px;
+}
+
+.profile2 {
+    width: 1009px;
+    height: 304px;
+    top: 30px;
+    left: 393px;
+}
+
+#profile, #profile2 {
+    width: 283px;
+    height: 195px;
+    left: 13px;
+    top: 16px;
+
+    background: #F3F3FB;
+}
+
+#profile2 {
+    width: 283px;
+    height: 41px;
+    top: 246px;
+    left: 13px;
+}
+
+.image-stack img {
+    width: 90px;
+    height: 100px;
+    margin-top: 50px;
+    margin-left: 96px;
+    image-rendering: optimizeQuality;
+}
+
+.login {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+}
+
+#online {
+    margin-right: 25px;
+    text-align: right;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.profile-description, .profile-description2 {
+    margin-bottom: 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.profile-description2{
+
+    color: #4654EB;
 }

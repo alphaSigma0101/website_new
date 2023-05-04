@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Rubik&family=Sen&display=swap');
+  </style>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <title>Manager Tasks</title>
+</head>
+<body>
+    <header>
+        <div class="menu">
+          <div class="head">
+            <span class="icon">
+              М
+            </span>
+            <span class="headtext">
+              Manager Task
+            </span>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <img src="../static/images/tasks_img.png" alt="tasks">
+              <span><a href={{url_for('index')}}>Задачи<a/></span>
+            </div>
+            <div class="menu-item">
+              <img src="../static/images/chat_img.png" alt="chat">
+              <span><a href={{url_for('chat_index')}}>Чат</a></span>
+            </div>
+            <div class="menu-item">
+              <img src="../static/images/employees_img.png" alt="employees">
+              <span>Сотрудники</span>
+            </div>
+            <div class="menu-item">
+              <img src="../static/images/calendar_img.png" alt="calendar">
+              <span>Календарь</span>
+            </div>
+            <div class="menu-item">
+              <img src="../static/images/first_second_name_img.png" alt="first_second_name">
+              <span>фамилия имя</span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section>
+        <div class="profile">
+                <div id="profile">
+                    <div class="image-stack">
+                        <div class="image-stack_">
+                          <img src="../static/images/first_second_name_img.png" alt="profile">
+                        </div>
+                     </div>
+                </div>
+                <div id="profile2">
+                    <p align="center"><button>редактировать</button></p>
+                </div>
+        </div>
+        <div class="profile2">
+            <div>
+                <div>
+                    <ul>
+                        <li><span class="login">Фамилия Имя<span></li>
+                        <li><p id="online">online</p></li>
+                        <li><span class="profile-description">мини описание</span></li>
+                    </ul>
+                    <hr>
+                </div>
+                
+                <div>
+                    <ul>
+                        <p>
+                          <span class="profile-description">день рождения: </span><span class="profile-description2">00.00.00</span>
+                        </p>
+                        <p>
+                          <span class="profile-description">семейное положение: </span><span class="profile-description2">не указано</span>
+                        </p>
+                        <p>
+                          <span class="profile-description">образование: </span><span class="profile-description2">не указано</span>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
