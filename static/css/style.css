@@ -331,4 +331,12 @@ ul.staff_member {
     width: 10vw;
     height: 10vh;
     font-size: 5vh;
-  }
+}
+
+.form-label {
+    font-size: 1.5em;
+}
+
+.form-control1 {
+    height: 3em;
+}
