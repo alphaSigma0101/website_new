@@ -16,6 +16,17 @@ def chat_index():
         'chat.html'
     )
 
+@app.route('/employees')
+def employees():
+    return render_template(
+        'employees.html'
+    )
+
+@app.route('/profile')
+def profile():
+    return render_template(
+        'profile.html'
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
