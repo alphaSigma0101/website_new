@@ -1,6 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
+from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, URL
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
@@ -14,7 +18,6 @@ app.app_context().push()
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
-    surname = db.Column(db.String(50))
     task_text = db.Column(db.Text)
     deadline = db.Column(db.DateTime)
 
@@ -39,6 +42,17 @@ class Staff(db.Model):
 
 
 db.create_all()
+
+
+class TaskForm(FlaskForm):
+    name = StringField(
+        'Напишити имя выполняющего', validators=[DataRequired(message="Имя не может быть пустым!")]
+    )
+    task = TextAreaField(
+        'Напишите текст задания', validators=[DataRequired(message="Задание не может быть пустым!")]
+    )
+
+    submit = SubmitField('Добавить')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -68,10 +82,24 @@ def profile():
         'profile.html'
     )
 
-@app.route('/add_task')
+
+@app.route('/add_task', methods=['GET', 'POST'])
 def add_task():
+    form = TaskForm()
+    now = datetime.now().strftime("%d.%m.%Y")
+    if form.validate_on_submit():
+        try:
+            task = Task()
+            task.name = form.name.data
+            task.task_text = form.task.data
+            task.deadline = datetime.strptime(now, "%d.%m.%Y")
+            db.session.add(task)
+            db.session.commit()
+            return redirect(url_for('index'))
+        except Exception:
+            return redirect(url_for('index'))
     return render_template(
-        'add_task.html'
+        'add_task.html', form=form
     )
 
 

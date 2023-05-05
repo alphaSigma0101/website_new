@@ -3,11 +3,32 @@
 {% block content %}
 
   <section>
-    <div id="add_task">
-        <form>
-            <p>Текст Задачи</p>
-            <textarea rows="10" cols="45" name="text"></textarea>
-            <input type="submit" value="Добавить">
+    <div>
+        <form method="POST" action="" novalidate>
+        {{ form.csrf_token }}
+        <div class="mb-3">
+          <label for="worker" class="form-label">
+              {{ form.name.label }}
+          </label>
+            {{ form.name(class="form-control") }}
+        </div>
+            {% for error in form.name.errors %}
+            <div class="alert alert-danger" role="alert">
+              <span>{{ error }}</span>
+            </div>
+          {% endfor %}
+        <div class="mb-3">
+          <label for="task_text" class="form-label">
+              {{ form.task.label }}
+          </label>
+            {{ form.task(class="form-control1") }}
+        </div>
+          {% for error in form.task.errors %}
+            <div class="alert alert-danger" role="alert">
+              <span>{{ error }}</span>
+            </div>
+          {% endfor %}
+        {{ form.submit(class="btn btn-primary mb-3") }}
       </form>
     </div>
   </section>
