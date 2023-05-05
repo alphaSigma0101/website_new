@@ -322,3 +322,13 @@ ul.staff_member {
 
     color: #4654EB;
 }
+
+#add_task {
+    /* background-color: #FFFFFF;
+    border-radius: 18px; */
+
+    margin-left: 100px;
+    width: 10vw;
+    height: 10vh;
+    font-size: 5vh;
+  }
