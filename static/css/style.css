@@ -22,7 +22,9 @@ section {
 
 
 .text {
-    margin: 133px 24px 838px 45px;
+    margin-top: 133px;
+    margin-right: 24px;
+    margin-left: 45px;
     width: 1385px;
     height: 68px;
     left: 472px;
@@ -125,7 +127,7 @@ h2.menu-item {
     font-weight: normal;
 }
 
-#chat {
+#chat, #task {
     margin-top: 400px;
     margin-bottom: 33px;
     margin-right: 24px;
@@ -137,6 +139,11 @@ h2.menu-item {
     top: 300px;
     background-color: #FFFFFF;
     border-radius: 18px;
+}
+
+#task {
+    background-color: #F3F3FB;
+    margin-top: 625px;
 }
 
 button{
@@ -315,3 +322,13 @@ ul.staff_member {
 
     color: #4654EB;
 }
+
+#add_task {
+    /* background-color: #FFFFFF;
+    border-radius: 18px; */
+
+    margin-left: 100px;
+    width: 10vw;
+    height: 10vh;
+    font-size: 5vh;
+  }
