@@ -340,3 +340,18 @@ ul.staff_member {
 .form-control1 {
     height: 3em;
 }
+/*Форма авторизации и регистрации*/
+
+.autoriz_section{
+    position: absolute;
+    left: 35%;
+    top: 20% ;
+    width: 30%;
+    height: 25%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 3em;
+}
+
+.autoriz_headtext {
+    text-align: center;
+}
