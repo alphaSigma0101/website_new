@@ -141,7 +141,7 @@ def login():
             return redirect(url_for('index'))
         flash("Неверный логин или пароль!", 'error')
         return redirect(url_for('login'))
-    return render_template('login_signup.html', form=form, fields=list(form)[:-2])
+    return render_template('login_signup.html', form=form, fields=list(form)[:-3])
 
 
 @app.route('/logout')
