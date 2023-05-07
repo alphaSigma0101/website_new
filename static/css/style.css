@@ -296,10 +296,12 @@ ul.staff_member {
 }
 
 .profile2 {
+    position: relative;
     width: 1009px;
     height: 304px;
     top: 30px;
     left: 393px;
+    padding-top: 7px;
 }
 
 #profile, #profile2 {
@@ -334,10 +336,9 @@ ul.staff_member {
 }
 
 #online {
-    margin-right: 25px;
-    text-align: right;
-    margin-bottom: 0px;
-    margin-top: 0px;
+    position: absolute;
+    top: 15px;
+    right: 75px;
 }
 
 .profile-description, .profile-description2 {
@@ -409,6 +410,7 @@ ul.links li {
 }
 
 .btn {
+    margin-top: -2em;
     float: left;
     font-weight: 700;
     font-size: 16px;
@@ -419,7 +421,7 @@ ul.links li {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 40px;
+    margin-top: 30px;
     background-color: #4654EB;
     font-family: "Sen", "Rubik", Arial, sans-serif;
 }
@@ -448,4 +450,28 @@ ul.links li {
 
 .autoriz_headtext {
     text-align: center;
+}
+
+.autoriz-login {
+    display: inline;
+}
+
+.btn-link {
+    text-decoration: underline;
+    font-size: large;
+}
+
+.links {
+    margin-left: -1.2em;
+}
+
+.login-check-box {
+    padding-top: 15px
+}
+
+#logout {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    text-decoration: underline;
 }

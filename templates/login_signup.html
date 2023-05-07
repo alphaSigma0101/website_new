@@ -12,13 +12,13 @@
 </head>
 <body>
     {% for category, message in  get_flashed_messages(with_categories=true) %}
-	    <spam class="message">{{ message }}</spam>
+      <spam class="message">{{ message }}</spam>
     {% endfor %}
     <div class="autoriz_section" style="{{ '{}'.format('height: 370px') if form.action == 'Авторизация'}}">
         <div class="nav">
           <ul class="links">
-            <li class="btn-link"><a href="/login">Войти</a></li>
-            <li class="btn-link"><a href="/signup">Зарегистрироваться</a></li>
+            <span class="btn-link" style="margin-right: 65px;"><a href="/login">Войти</a></span>
+            <span class="btn-link"><a href="/signup">Зарегистрироваться</a></span>
           </ul>
         </div>
         <form method="POST" action="" class="autorization_form">
@@ -41,4 +41,4 @@
     </div>
 
 </body>
-</html>
+</html
