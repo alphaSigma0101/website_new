@@ -123,7 +123,7 @@ h2.menu-item {
 
 .message {
     padding: 20px;
-    font-family: "Sen", Arial, sans-serif;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
     font-weight: normal;
 }
 
@@ -357,7 +357,9 @@ ul.staff_member {
     border-color: rgba(0,50,100, 0.1);
     border-style: solid;
     border-radius: 10px;
-    background: rgb(230, 235, 234)
+    background: rgb(230, 235, 234);
+    font-family: "Sen", "Rubik", Arial, sans-serif;
+    font-size: 18px
 }
 
 
@@ -384,7 +386,8 @@ ul.links li {
     border-radius: 10px;
     cursor: pointer;
     margin-top: 40px;
-    background-color: #4654EB
+    background-color: #4654EB;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
 }
 
 .autoriz_section{
@@ -393,13 +396,14 @@ ul.links li {
     top: 10% ;
     width: 350px;
     height: 630px;
-    box-shadow: 0 0 50px rgba(0,50,100,0.35);
+    box-shadow: 0 0 50px rgba(0, 100, 200,0.4);
     padding-right: 3em;
     padding-left: 3em;
     padding-top: 1em;
     padding-bottom: 3em;
     background: #F3F3FB;
-    font-family: "Sen", Arial, sans-serif;
+    background: linear-gradient(53deg, #81b7e2,#b3eadd);
+    font-family: "Sen", "Rubik", Arial, sans-serif;
     border-radius: 66px;
 }
 

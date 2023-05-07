@@ -11,6 +11,9 @@
   <title>Manager Tasks</title>
 </head>
 <body>
+    {% for category, message in  get_flashed_messages(with_categories=true) %}
+	    <spam class="message">{{ message }}</spam>
+    {% endfor %}
     <div class="autoriz_section" style="{{ '{}'.format('height: 330px') if form.action == 'Авторизация'}}">
         <div class="nav">
           <ul class="links">
