@@ -35,8 +35,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(30))
     surname = db.Column(db.String(30))
     birthday = db.Column(db.String(20))
-    family_status = db.Column(db.String(30))
-    education = db.Column(db.String(255))
+    family_status = db.Column(db.String(30), default='не указано')
+    education = db.Column(db.String(255), default='не указано')
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'))
 
     def set_password(self, password):
@@ -85,7 +85,7 @@ def employees():
 @login_required
 def profile():
     return render_template(
-        'profile.html'
+        'profile.html', user=current_user
     )
 
 
@@ -93,13 +93,13 @@ def profile():
 @login_required
 def add_task():
     form = TaskForm()
-    now = datetime.now().strftime("%d.%m.%Y")
+    now = datetime.now().strftime("%d %B")
     if form.validate_on_submit():
         try:
             task = Task()
             task.name = form.name.data
             task.task_text = form.task.data
-            task.deadline = datetime.strptime(now, "%d.%m.%Y")
+            task.deadline = now
             db.session.add(task)
             db.session.commit()
             return redirect(url_for('index'))

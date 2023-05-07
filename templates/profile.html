@@ -11,14 +11,14 @@
                      </div>
                 </div>
                 <div id="profile2" style="padding-top: 7px;">
-                    <span class="profedit" style="margin-left: 15%; font-size: 1.8em;">Редактировать</span>
+                    <a class="profedit" style="margin-left: 15%; font-size: 1.8em;" href="/edit_profile">Редактировать</a>
                 </div>
         </div>
         <div class="profile2">
             <div>
                 <div>
                     <ul>
-                        <li><span class="login">Фамилия Имя<span></li>
+                        <li><span class="login">{{ user.surname }} {{ user.name}}</span></li>
                         <li><p id="online">online</p></li>
                         <li><span class="profile-description">мини описание</span></li>
                     </ul>
@@ -28,13 +28,13 @@
                 <div>
                     <ul>
                         <p>
-                          <span class="profile-description">день рождения: </span><span class="profile-description2">00.00.00</span>
+                          <span class="profile-description">День рождения: </span><span class="profile-description2">{{ user.birthday }}</span>
                         </p>
                         <p>
-                          <span class="profile-description">семейное положение: </span><span class="profile-description2">не указано</span>
+                          <span class="profile-description">Семейное положение: </span><span class="profile-description2">{{ user.family_status }}</span>
                         </p>
                         <p>
-                          <span class="profile-description">образование: </span><span class="profile-description2">не указано</span>
+                          <span class="profile-description">Образование: </span><span class="profile-description2">{{ user.education }}</span>
                         </p>
                     </ul>
                 </div>
