@@ -4,30 +4,21 @@
 
   <div class="section_right">
     <h2 class="menu-item"><img src="../static/images/search.png" alt="search" align="left" width="31" height="31">search chat</h2>
-    <table class="text">
-      <tr>
-        <td align="center"><img src="../static/images/circle.png" alt="circle"></td>
-        <td align="center">и.м фамилия</td>
-        <td align="center"> текст текст текст текст текст текст текст текст</td>
-        <td align="center">31 марта</td>
-      </tr>
-      <tr>
-        <td align="center"><img src="../static/images/circle.png" alt="circle"></td>
-        <td align="center">и.м фамилия</td>
-        <td align="center"> текст текст текст текст текст текст текст текст</td>
-        <td align="center">31 марта</td>
-      </tr>
-     </table>
-     <div id="task">
-      <h2 class="message">
-        <a href={{url_for('add_task')}}>
-          <button style="font-size: 1.2em;">
-            <img src="../static/images/add.png" alt="search" align="bottom" width="21" height="21">
-              Добавить задачу
-          </button>
-        </a>
-      </h2>
+    <div class="table">
+      {% for task in tasks %}
+      <div class="outer">
+          <div class="inner-image"><img src="../static/images/circle.png" alt="circle"><a>{{ task.name }}</a></div>
+<!--          <li><div class="inner-name">{{ task.name }}</div></li>-->
+          <div class="inner-text">{{ task.task_text|truncate(40) }}</div>
+          <div class="inner-date">{{ task.deadline }}</div>
       </div>
+      {% endfor %}
+     </div>
+    <a href={{url_for('add_task')}}>
+      <button style="font-size: 1.2em;" class="add-task-button">
+        <img src="../static/images/add.png" alt="search">
+      </button>
+    </a>
   </div>
 
 {% endblock %}

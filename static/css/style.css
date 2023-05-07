@@ -1,7 +1,7 @@
 header {
     margin-top: 24px;
     display: inline;
-    font-family: "Sen", Arial, sans-serif;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
     position: relative;
     width: 1920px;
     height: 1080px;
@@ -10,35 +10,61 @@ header {
 .section_right {
     position: absolute;
     width: 1454px;
-    height: 1044px;
+    height: 1039px;
     left: 427px;
     top: 24px;
-    font-family: "Sen", Arial, sans-serif;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
 
     background: #F3F3FB;
     border-radius: 66px;
 }
 
-
-
-.text {
-    margin-top: 133px;
-    margin-right: 24px;
-    margin-left: 45px;
-    width: 1385px;
-    height: 68px;
-    left: 472px;
-    top: 157px;
-    background-color: #FFFFFF;
-    border-radius: 18px;
+.add-task-button {
+    position: absolute;
+    left: 1360px;
+    top: 35px;
+    cursor: pointer;
 }
 
-td {
-    border: 1px black solid; /* стиль рамки ячеек */
+.outer {
+    width: 1385px;
+    height: 68px;
+    margin-bottom: 21px;
+    margin-right: 24px;
+    margin-left: 45px;
     border-radius: 18px;
-    padding: 0.2em; 
+    background-color: #FFFFFF;
+    display: flex;
+    font-size: 23px;
+    align-items: center;
+    justify-content: space-between;
+}
 
-   }
+.inner-image {
+    margin-left: 19px;
+}
+
+.inner-image img {
+    vertical-align: middle
+}
+
+.inner-image a {
+    vertical-align: middle;
+    margin-left: 23px;
+}
+
+.inner-text {
+    margin-left: 103px;
+}
+
+.inner-date {
+    margin-right: 103px;
+}
+
+.table {
+    margin-top: 50px;
+}
+
 
 #circle {
     margin: 145px 1346px 850px 64px;
@@ -85,15 +111,19 @@ span.headtext {
     font-size: 24px;
 }
 
+.menu-item img {
+    vertical-align: -10px;
+}
+
 .menu-item span {
     margin-left: 15px;
 }
+
 
 h2.menu-item {
     text-decoration: underline;
     border-bottom: 2px;
 }
-
 
 
 .container, .container_lft {
@@ -360,6 +390,10 @@ ul.staff_member {
     background: rgb(230, 235, 234);
     font-family: "Sen", "Rubik", Arial, sans-serif;
     font-size: 18px
+}
+
+.login-check-box {
+    padding-top: 15px
 }
 
 

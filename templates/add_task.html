@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <section class="add_task_form" style="padding: 2em;">
+  <div class="section_right" style="padding: 2em;">
     <div class="add_task_form" style="display: table-cell; vertical-align: top;">
         <form method="POST" action="" novalidate>
         {{ form.csrf_token }}
@@ -31,6 +31,6 @@
         {{ form.submit(class="btn btn-primary mb-3") }}
       </form>
     </div>
-  </section>
+  </div>
   
 {% endblock %}

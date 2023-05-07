@@ -20,7 +20,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     task_text = db.Column(db.Text)
-    deadline = db.Column(db.DateTime)
+    deadline = db.Column(db.String(20))
 
 
 @login_manager.user_loader
@@ -59,8 +59,9 @@ db.create_all()
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
+    tasks_list = Task.query.all()
     return render_template(
-        'index.html'
+        'index.html', tasks=tasks_list
     )
 
 
@@ -141,7 +142,7 @@ def login():
             return redirect(url_for('index'))
         flash("Неверный логин или пароль!", 'error')
         return redirect(url_for('login'))
-    return render_template('login_signup.html', form=form, fields=list(form)[:-2])
+    return render_template('login_signup.html', form=form, fields=list(form)[:-3])
 
 
 @app.route('/logout')
