@@ -11,7 +11,7 @@
   <title>Manager Tasks</title>
 </head>
 <body>
-    {% for category, message in  get_flashed_messages(with_categories=true) %}
+    {% for category, message in get_flashed_messages(with_categories=true) %}
       <spam class="message">{{ message }}</spam>
     {% endfor %}
     <div class="autoriz_section" style="{{ '{}'.format('height: 370px') if form.action == 'Авторизация'}}">
@@ -27,7 +27,7 @@
             {% for field in fields %}
             <div class="autoriz_login" style="display:block; margin-top: 2em">
                 <label class="form-label">{{ field.label }}</label>
-                {{ field(class="form-field") if field.name != "birthday" else field(class="form-field", type="date")}}
+                {{ field(class="form-field") }}
             </div>
             {% endfor %}
             {% if form.remember %}

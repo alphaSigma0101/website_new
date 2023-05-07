@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, current_user, UserMixin, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -7,7 +7,7 @@ from forms import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -20,7 +20,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     task_text = db.Column(db.Text)
-    deadline = db.Column(db.String(20))
+    deadline = db.Column(db.String(30))
 
 
 @login_manager.user_loader
@@ -34,7 +34,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     name = db.Column(db.String(30))
     surname = db.Column(db.String(30))
-    birthday = db.Column(db.String(20))
+    birthday = db.Column(db.String(30))
     family_status = db.Column(db.String(30), default='не указано')
     education = db.Column(db.String(255), default='не указано')
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'))
@@ -93,13 +93,12 @@ def profile():
 @login_required
 def add_task():
     form = TaskForm()
-    now = datetime.now().strftime("%d %B")
     if form.validate_on_submit():
         try:
             task = Task()
             task.name = form.name.data
             task.task_text = form.task.data
-            task.deadline = now
+            task.deadline = form.deadline.data.strftime("%d %B")
             db.session.add(task)
             db.session.commit()
             return redirect(url_for('index'))
@@ -120,7 +119,7 @@ def sign_up():
             user.set_password(form.password.data)
             user.name = form.name.data
             user.surname = form.surname.data
-            user.birthday = form.birthday.data
+            user.birthday = form.birthday.data.strftime("%d.%m.%Y")
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('login'))

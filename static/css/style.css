@@ -176,7 +176,7 @@ h2.menu-item {
     margin-top: 625px;
 }
 
-button{
+button {
     outline: none; /* Для синий ободки */
     border: 0;
     background: transparent;
@@ -354,23 +354,72 @@ ul.staff_member {
     color: #4654EB;
 }
 
-#add_task {
-    /* background-color: #FFFFFF;
-    border-radius: 18px; */
+/*Форма добавления задач*/
 
-    margin-left: 100px;
-    width: 10vw;
-    height: 10vh;
-    font-size: 5vh;
+.task_headtext {
+    text-align: center;
 }
 
-.form-label {
-    font-size: 1.5em;
+.task_form {
+    position: absolute;
+    left: 42%;
+    top: 24px ;
+    width: 450px;
+    height: 700px;
+    box-shadow: 0 0 30px rgba(0, 0, 0,0.2);
+    padding-right: 3em;
+    padding-left: 3em;
+    padding-top: 1em;
+    padding-bottom: 3em;
+    background: #F3F3FB;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
+    font-size: 20px;
+    border-radius: 66px;
 }
 
-.form-control1 {
-    height: 3em;
+.task_form_field {
+    width: 95%;
+    height: 35px;
+    padding-left: 15px;
+    border-color: rgba(0,50,100, 0.1);
+    border-style: solid;
+    border-radius: 10px;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
+    font-size: 22px
 }
+
+.task-form-label {
+  padding-left: 15px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+#task-textarea {
+    width: 95%;
+    height: 300px;
+    padding-left: 15px;
+    resize: none;
+    border-color: rgba(0,50,100, 0.1);
+    border-style: solid;
+    border-radius: 10px;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
+    font-size: 22px
+}
+
+.task-back-btn {
+    float: left;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    height: 35px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
+}
+
+
 /*Форма авторизации и регистрации*/
 
 .form-label {

@@ -2,33 +2,25 @@
 
 {% block content %}
 
-  <div class="section_right" style="padding: 2em;">
-    <div class="add_task_form" style="display: table-cell; vertical-align: top;">
-        <form method="POST" action="" novalidate>
+  <div class="task_section" style="padding: 2em;">
+    <div class="task_form" style="display: table-cell; vertical-align: top;">
+      <form method="POST" action="" novalidate>
         {{ form.csrf_token }}
-        <div class="mb-3">
-          <label for="worker" class="form-label" style="margin-right: 1.5em;">
-              {{ form.name.label }}
-          </label>
-            {{ form.name(class="form-control") }}
+        <h2 class="task_headtext">Добавить задачу</h2>
+        <div class="task_name" style="display:block; margin-top: 2em">
+            <label class="task-form-label">{{ form.name.label }}</label>
+            {{ form.name(class="task_form_field") }}
         </div>
-            {% for error in form.name.errors %}
-            <div class="alert alert-danger" role="alert">
-              <span>{{ error }}</span>
-            </div>
-          {% endfor %}
-        <div class="mb-3">
-          <label for="task_text" class="form-label">
-              {{ form.task.label }}
-          </label>
-            {{ form.task(class="form-control1") }}
+        <div class="task-field-text" style="display:block; margin-top: 2em">
+            <label class="task-form-label">{{ form.task.label }}</label>
+                {{ form.task(id="task-textarea") }}
         </div>
-          {% for error in form.task.errors %}
-            <div class="alert alert-danger" role="alert">
-              <span>{{ error }}</span>
-            </div>
-          {% endfor %}
-        {{ form.submit(class="btn btn-primary mb-3") }}
+        <div class="task_deadline" style="display:block; margin-top: 2em">
+            <label class="task-form-label">{{ form.deadline.label }}</label>
+            {{ form.deadline(class="task_form_field") }}
+        </div>
+        {{ form.submit(class="btn") }}
+            <span class="task-back-btn"><a href="/">Назад</a></span>
       </form>
     </div>
   </div>

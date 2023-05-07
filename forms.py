@@ -1,16 +1,18 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, PasswordField, BooleanField
-from wtforms.validators import DataRequired
+from wtforms import StringField, SubmitField, TextAreaField, PasswordField, BooleanField, DateField
+from wtforms.validators import DataRequired, Optional
 
 
 class TaskForm(FlaskForm):
     name = StringField(
-        'Напишити имя выполняющего', validators=[DataRequired(message="Имя не может быть пустым!")]
+        'Для кого:', validators=[DataRequired()]
     )
     task = TextAreaField(
-        'Напишите текст задания', validators=[DataRequired(message="Задание не может быть пустым!")]
+        'Текст задания:', validators=[DataRequired()]
     )
-
+    deadline = DateField(
+        'Дата окончания:', validators=[DataRequired()]
+    )
     submit = SubmitField('Добавить')
 
 
@@ -35,7 +37,7 @@ class SignupForm(LoginForm):
     surname = StringField(
         'Ваша фамилия', validators=[DataRequired()]
     )
-    birthday = StringField(
+    birthday = DateField(
         'Дата рождения', validators=[DataRequired()]
     )
     submit = SubmitField('Зарегистрироваться')
