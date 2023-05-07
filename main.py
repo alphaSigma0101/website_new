@@ -1,15 +1,16 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_login import LoginManager, current_user
+from werkzeug.security import generate_password_hash,  check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, URL
+from forms import *
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 db = SQLAlchemy(app)
 app.app_context().push()
@@ -22,7 +23,7 @@ class Task(db.Model):
     deadline = db.Column(db.DateTime)
 
 
-class Profile(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
@@ -42,17 +43,6 @@ class Staff(db.Model):
 
 
 db.create_all()
-
-
-class TaskForm(FlaskForm):
-    name = StringField(
-        'Напишити имя выполняющего', validators=[DataRequired(message="Имя не может быть пустым!")]
-    )
-    task = TextAreaField(
-        'Напишите текст задания', validators=[DataRequired(message="Задание не может быть пустым!")]
-    )
-
-    submit = SubmitField('Добавить')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -101,6 +91,22 @@ def add_task():
     return render_template(
         'add_task.html', form=form
     )
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def sign_up():
+    form = SignupForm()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+    return render_template('login_signup.html', form=form, fields=list(form)[:-2])
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+    return render_template('login_signup.html', form=form, fields=list(form)[:-2])
 
 
 if __name__ == '__main__':

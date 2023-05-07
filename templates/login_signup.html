@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Rubik&family=Sen&display=swap');
+  </style>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <title>Manager Tasks</title>
+</head>
+<body>
+    <div class="autoriz_section" style="{{ '{}'.format('height: 330px') if form.action == 'Авторизация'}}">
+        <div class="nav">
+          <ul class="links">
+            <li class="btn-link"><a href="/login">Войти</a></li>
+            <li class="btn-link"><a href="/signup">Зарегистрироваться</a></li>
+          </ul>
+        </div>
+        <form method="POST" action="" class="autorization_form">
+            {{ form.csrf_token }}
+            <h2 class="autoriz_headtext">{{ form.action }}</h2>
+            {% for field in fields %}
+            <div class="autoriz_login" style="display:block; margin-top: 2em">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field(class="form-field") if field.name != "birthday" else field(class="form-field", type="date")}}
+            </div>
+            {% endfor %}
+            {{ form.submit(class="btn") }}
+        </form>
+    </div>
+
+</body>
+</html>
