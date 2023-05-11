@@ -152,9 +152,27 @@ h2.menu-item {
 }
 
 .message {
+    position: absolute;
+    left: 45%;
     padding: 20px;
     font-family: "Sen", "Rubik", Arial, sans-serif;
-    font-weight: normal;
+    font-weight: large;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0, 100, 200,0.4);
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: mess_anim;
+}
+
+@keyframes mess_anim {
+    0% {
+        opacity: 0;
+        top: -20px;
+    }
+    100%{
+        opacity: 1;
+        top: 20px;
+    }
 }
 
 #chat, #task {
@@ -477,8 +495,8 @@ ul.links li {
 
 .autoriz_section{
     position: absolute;
-    left: 42%;
-    top: 10% ;
+    left: 40%;
+    top: 15% ;
     width: 350px;
     height: 630px;
     box-shadow: 0 0 50px rgba(0, 100, 200,0.4);
