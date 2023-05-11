@@ -6,7 +6,7 @@
     <div class="task_form" style="display: table-cell; vertical-align: top;">
       <form method="POST" action="" novalidate>
         {{ form.csrf_token }}
-        <h2 class="task_headtext">Добавить задачу</h2>
+        <h2 class="task_headtext" style="margin-top: -10px;">Добавить задачу</h2>
         <div class="task_name" style="display:block; margin-top: 2em">
             <label class="task-form-label">{{ form.name.label }}</label>
             {{ form.name(class="task_form_field") }}
