@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="section_right" style="padding: 2em;">
+    <div class="add_task_form" style="display: table-cell; vertical-align: top;">
+        <form method="POST" action="" novalidate>
+        {{ form.csrf_token }}
+        <div class="mb-3">
+          <label for="worker" class="form-label" style="margin-right: 1.5em;">
+              {{ form.name.label }}
+          </label>
+            {{ form.name(class="form-control") }}
+        </div>
+            {% for error in form.name.errors %}
+            <div class="alert alert-danger" role="alert">
+              <span>{{ error }}</span>
+            </div>
+          {% endfor %}
+        <div class="mb-3">
+          <label for="task_text" class="form-label">
+              {{ form.task.label }}
+          </label>
+            {{ form.task(class="form-control1") }}
+        </div>
+          {% for error in form.task.errors %}
+            <div class="alert alert-danger" role="alert">
+              <span>{{ error }}</span>
+            </div>
+          {% endfor %}
+        {{ form.submit(class="btn btn-primary mb-3") }}
+      </form>
+    </div>
+  </div>
+  
+{% endblock %}
