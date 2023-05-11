@@ -151,7 +151,7 @@ h2.menu-item {
     border-radius: 18px;
 }
 
-.message {
+#message {
     position: absolute;
     left: 45%;
     padding: 20px;
@@ -214,6 +214,7 @@ A:active {
 }
 
 .message img {
+    margin-top: 10px;
     margin-right: 10px;
 }
 
