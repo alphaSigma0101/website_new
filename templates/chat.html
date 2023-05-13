@@ -1,25 +1,69 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <section>
+    <div class="section_right">
         <div class="chat">
-            <h2 class="message"><img src="../static/images/circle.png" alt="search" align="bottom" width="21" height="21">общий чат</h2>
+            <h2 class="message" ><img src="../static/images/circle.png" alt="search" align="bottom" width="21" height="21" style="margin: 10px 10px;">общий чат</h2>
         </div>
-        <div>
-            <div align="right">
-                <div class="container">
-                    <p>Hello. How are you today?</p>
+        <div class="">
+            <div class="card-body">
+                {% for message in messages %}
+                <div class="group-message">
+                    {% if message.author == current_user %}
+                        <div class="my-message">
+                    {% else %}
+                        <div class="other-message">
+                    {% endif %}
+                        <span class="username">{{ message.author.login }}</span>
+                        <span class="timestamp">{{ message.timestamp.strftime('%H:%M') }}</span>
+                        <p>{{ message.text }}</p>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            <div>
-                <div class="container_lft">
-                    <p>I'm fine</p>
-                </div>
+
+            <form id="message-form" action="{{ url_for('chat') }}" method="POST", >
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            <div id="message-field">
+                {{ form.message(id="chat-message", placeholder="Написать сообщение...") }}
             </div>
+            </form>
         </div>
-        <div id="chat">
-            <h2 class="message"><button><img src="../static/images/add.png" alt="search" align="bottom" width="21" height="21"></button>text</h2>
-        </div>
-    </section>
+    </div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+            socket.on('connect', function() {
+                socket.emit('join', {'username': '{{ current_user.login }}'});
+            });
+
+            socket.on('message', function(data) {
+                var date = new Date();
+                var formattedTime = date.toLocaleTimeString('ru-RU', { hour: 'numeric', minute: 'numeric' });
+                var message = '<div class="my-message"><span class="username">' + data.username + '</span><span class="timestamp">' + formattedTime + '</span><p>' + data.message + '</p></div>';
+                $('.card-body').append(message);
+            });
+
+            $('#message-form').submit(function(event) {
+                event.preventDefault();
+                var message = $('#chat-message').val();  // Извлекаем значение из формы
+                socket.emit('send_message', {'message': message});  // Передаем сообщение на сервер
+                $('#chat-message').val('');  // Очищаем форму после отправки
+            });
+            
+            $('#chat-message').keypress(function(event) {
+                if (event.which == 13) {
+                event.preventDefault();
+                $('#message-form').submit();
+                }
+            });
+        });
+
+    </script>
 {% endblock %}
