@@ -16,6 +16,11 @@ class TaskForm(FlaskForm):
     submit = SubmitField('Добавить')
 
 
+class ChatForm(FlaskForm):
+    message = StringField(validators=[DataRequired()])
+    submit = SubmitField('Отправить')
+
+
 class LoginForm(FlaskForm):
     action = 'Авторизация'
     login = StringField(

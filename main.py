@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash, request
+from flask_socketio import SocketIO, send, emit
 from flask_login import LoginManager, current_user, UserMixin, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -14,6 +15,7 @@ db = SQLAlchemy(app)
 app.app_context().push()
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
+socket = SocketIO(app)
 
 
 class Task(db.Model):
@@ -53,7 +55,32 @@ class Staff(db.Model):
     people = db.relationship('User', backref='staff')
 
 
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    author = db.relationship('User', backref=db.backref('messages', lazy=True))
+
+
 db.create_all()
+
+
+@socket.on('message')
+def handle_message(data):
+    emit('message', data, broadcast=True)
+
+
+@socket.on('send_message')
+def handle_send_message_event(data):
+    message = data['message']
+    username = current_user.login
+    user = current_user
+    new_message = Message(text=message, author=user)
+    db.session.add(new_message)
+    db.session.commit()
+    emit('message', {'username': username, 'message': message}, broadcast=True)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -68,8 +95,20 @@ def index():
 @app.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
+    form = ChatForm()
+    if form.validate_on_submit():
+        message = Message()
+        message.author = current_user
+        message.text = form.message.data
+        db.session.add(message)
+        db.session.commit()
+        socket.emit('message', {'username': current_user.login, 'message': form.message.data})
+        form.message.data = ''
+
+    messages = Message.query.order_by(Message.timestamp.desc()).limit(7).all()[::-1]
+
     return render_template(
-        'chat.html'
+        'chat.html', form=form, messages=messages, current_user=current_user
     )
 
 
@@ -153,4 +192,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socket.run(app, debug=True, allow_unsafe_werkzeug=True)
