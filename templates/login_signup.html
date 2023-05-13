@@ -12,7 +12,7 @@
 </head>
 <body>
     {% for category, message in get_flashed_messages(with_categories=true) %}
-      <spam class="message">{{ message }}</spam>
+      <spam id="message">{{ message }}</spam>
     {% endfor %}
     <div class="autoriz_section" style="{{ '{}'.format('height: 370px') if form.action == 'Авторизация'}}">
         <div class="nav">
@@ -41,4 +41,4 @@
     </div>
 
 </body>
-</html
+</html>
