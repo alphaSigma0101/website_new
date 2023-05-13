@@ -157,7 +157,7 @@ h2.menu-item {
     font-weight: normal;
 }
 
-#chat, #task {
+#task {
     margin-top: 400px;
     margin-bottom: 33px;
     margin-right: 24px;
@@ -523,4 +523,48 @@ ul.links li {
     right: 15px;
     top: 15px;
     text-decoration: underline;
+}
+
+/* ==== Форма для чата ====*/
+
+
+
+#chat-message {
+    position: absolute;
+    left: 43px;
+    bottom: 33px;
+    width: 1385px;
+    height: 56px;
+    border: none;
+    border-radius: 18px;
+    font-size: 25px;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
+    background: #FFFFFF;
+}
+
+.group-message {
+    padding: 30px;
+    margin-top: -100px;
+    margin-bottom: 115px;
+    font-family: "Sen", "Rubik", Arial, sans-serif;
+}
+
+.my-message, .other-message {
+    position: absolute;
+    border-radius: 18px;
+    min-width: 548px;
+    height: 45px;
+    
+}
+
+.my-message {
+    right: 26px;
+    background-color: #67bef0;
+}
+
+
+
+.other-message {
+    left: 43px;
+    background-color: #338ef7;
 }
