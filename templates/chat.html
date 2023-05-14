@@ -8,27 +8,29 @@
         <div class="">
             <div class="card-body">
                 {% for message in messages %}
-                <div class="group-message">
-                    {% if message.author == current_user %}
-                        <div class="my-message">
-                    {% else %}
-                        <div class="other-message">
-                    {% endif %}
-                        <span class="username">{{ message.author.login }}</span>
-                        <span class="timestamp">{{ message.timestamp.strftime('%H:%M') }}</span>
-                        <p>{{ message.text }}</p>
+                {% if message.author == current_user %}
+                <div class="my-message-container">
+                {% else %}
+                <div class="other-message-container">
+                {% endif %}
+                    <span class="username">{{ message.author.login }}</span>
+<!--                    TODO: Сделать как в телеграмме. Если предыдущее сообщение отправлено тем же автором, то не показывать имя-->
+                    <div class="message-box">
+                        <span class="chat-message">{{ message.text }}</span>
                     </div>
+                    <span class="timestamp">{{ message.timestamp.strftime('%H:%M') }}</span>
                 </div>
                 {% endfor %}
-            </div>
+                </div>
 
-            <form id="message-form" action="{{ url_for('chat') }}" method="POST", >
+            <form id="message-form" action="{{ url_for('chat') }}" method="POST">
             {{ form.csrf_token }}
             {{ form.hidden_tag() }}
             <div id="message-field">
                 {{ form.message(id="chat-message", placeholder="Написать сообщение...") }}
             </div>
             </form>
+            </div>
         </div>
     </div>
 
@@ -36,7 +38,9 @@
     <script type="text/javascript" src="//cdn.socket.io/4.4.1/socket.io.min.js"></script>
     <script type="text/javascript">
 
+        var current_user_login = "{{ current_user.login }}";
         $(document).ready(function() {
+            $('.card-body').scrollTop($('.card-body')[0].scrollHeight);
             var socket = io.connect('http://' + document.domain + ':' + location.port);
 
             socket.on('connect', function() {
@@ -46,13 +50,19 @@
             socket.on('message', function(data) {
                 var date = new Date();
                 var formattedTime = date.toLocaleTimeString('ru-RU', { hour: 'numeric', minute: 'numeric' });
-                var message = '<div class="my-message"><span class="username">' + data.username + '</span><span class="timestamp">' + formattedTime + '</span><p>' + data.message + '</p></div>';
+                var messageClass = (data.username === current_user_login) ? 'my-message-container' : 'other-message-container';
+                var message = '<div class="' + messageClass + '"><span class="username">' + data.username + '</span><div class="message-box"><span class="chat-message">' + data.message + '</span></div><span class="timestamp">' + formattedTime + '</span></div>';
                 $('.card-body').append(message);
+                $('.card-body').scrollTop($('.card-body')[0].scrollHeight);
+                
             });
 
             $('#message-form').submit(function(event) {
                 event.preventDefault();
                 var message = $('#chat-message').val();  // Извлекаем значение из формы
+                if (message == '') {
+                    return;
+                }
                 socket.emit('send_message', {'message': message});  // Передаем сообщение на сервер
                 $('#chat-message').val('');  // Очищаем форму после отправки
             });

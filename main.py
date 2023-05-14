@@ -95,6 +95,7 @@ def index():
 @app.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
+
     form = ChatForm()
     if form.validate_on_submit():
         message = Message()
@@ -105,7 +106,7 @@ def chat():
         socket.emit('message', {'username': current_user.login, 'message': form.message.data})
         form.message.data = ''
 
-    messages = Message.query.order_by(Message.timestamp.desc()).limit(7).all()[::-1]
+    messages = Message.query.order_by(Message.timestamp.desc()).all()[::-1]
 
     return render_template(
         'chat.html', form=form, messages=messages, current_user=current_user
