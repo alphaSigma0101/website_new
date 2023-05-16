@@ -13,12 +13,10 @@
                 {% else %}
                 <div class="other-message-container">
                 {% endif %}
-                    <span class="username">{{ message.author.login }}</span>
-<!--                    TODO: Сделать как в телеграмме. Если предыдущее сообщение отправлено тем же автором, то не показывать имя-->
+                    <span class="username">{{ message.author.login }} {{ message.timestamp.strftime('%H:%M') }}</span>
                     <div class="message-box">
                         <span class="chat-message">{{ message.text }}</span>
                     </div>
-                    <span class="timestamp">{{ message.timestamp.strftime('%H:%M') }}</span>
                 </div>
                 {% endfor %}
                 </div>
